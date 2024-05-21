@@ -115,17 +115,17 @@
 // A palindrome is word, phrase, or sequence that reads the same backward as forward, e.g., madam or nurses run.
 
 
-// var checkPalindrome = function(str){
-//     var len = str.length;
-//     for ( var i = 0; i < len/2; i++ ){
-//         if ( str[i] != str[len - 1 - i] ){
-//                 return "string is not a palindrome";
-//         }
-//     }
-//     return "string is a palindrome";
-// }
-// console.log(checkPalindrome("madam"));
-// console.log(checkPalindrome("nursesrun"));
+var checkPalindrome = function(str){
+    var len = str.length;
+    for ( var i = 0; i < len/2; i++ ){
+        if ( str[i] != str[len - 1 - i] ){
+                return "string is not a palindrome";
+        }
+    }
+    return "string is a palindrome";
+}
+console.log(checkPalindrome("madam"));
+console.log(checkPalindrome("nursesrun"));
 
 
 
@@ -148,18 +148,19 @@
 // }
 // console.log(f(str));
 /////////////////////////////////////
-// var str = "dog";
-// var f = (str) => {
-//     var result = "";
-//     for (var i = 0; i < str.length; i++) {
-//         for (var j = i + 1; j <= str.length; j++) {
-//             result += str.substring(i, j);
-//             if (j <= str.length) result += ", ";
-//         }
-//     }
-//     return result;
-// };
-// console.log(f(str));
+//my code ----->
+var str = "dog";
+var f = (str) => {
+    var result = "";
+    for (var i = 0; i < str.length; i++) {
+        for (var j = i + 1; j <= str.length; j++) {
+            result += str.substring(i, j);
+            if (j <= str.length) result += ", ";
+        }
+    }
+    return result;
+};
+console.log(f(str));
 
 // IIFE 
 // 4. Write a JavaScript function that returns a string that has letters in alphabetical order.
@@ -189,15 +190,15 @@ var alphabetizeString = (function() {
 console.log(alphabetizeString(inputString));
 
 /////////////////
-var alphabetizeString = (function() {
-    return function(str) {
-        var strArray = str.split(""); 
-        var sortedStr = strArray.sort().join(""); 
-        return sortedStr;
-    };
-})();
-var inputString = 'webmaster';
-console.log(alphabetizeString(inputString));
+// var alphabetizeString = (function() {
+//     return function(str) {
+//         var strArray = str.split(""); 
+//         var sortedStr = strArray.sort().join(""); 
+//         return sortedStr;
+//     };
+// })();
+// var inputString = 'webmaster';
+// console.log(alphabetizeString(inputString));
 
 
 
