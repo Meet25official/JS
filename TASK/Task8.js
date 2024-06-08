@@ -43,9 +43,13 @@
 // Write a function reverseString(str) that returns the reversed version of a given string.
 
 // function reverseString(str){
-//     return str.split("").reverse().join("");    
+//     if(str.length == 0){
+//         return str;
+//     }
+//     return reverseString(str.substring(1)) + str.charAt(0);
 // }
-// console.log(reverseString("Meet Sarvaiya"));
+// console.log(reverseString("Meet"));
+
 
 // ---------------------------------
 // Binary Search
@@ -59,7 +63,7 @@
 //         return -1;
 //     }
 //     var mid = Math.floor((left + right) / 2);
-//     if(arr[mid] === target){
+//     if(arr[mid] == target){
 //         return mid;
 //     }
 //     else if(arr[mid] < target){
@@ -76,38 +80,53 @@
 // Write a function solveNQueens(n) that solves the N-Queens problem and returns one possible solution.
 
 // function solveNQueens(n){
-//     var board = new Array(n).fill(0).map(() => new Array(n).fill('.'));
 //     var result = [];
-//     function placeQueen(row){
-//         if(row === n){
-//             result.push(board.map(row => row.join('')));
-//             return;
+//     var board = [];
+//     for(var i = 0; i < n; i++){
+//         board.push(new Array(n).fill('.'));
+//     }
+//     solveNQueensHelper(board, 0, result);
+//     return result;
+// }
+// function solveNQueensHelper(board, row, result){
+//     if(row == board.length){
+//         var solution = [];
+//         for(var i = 0; i < board.length; i++){
+//             solution.push(board[i].join(''));
 //         }
-//         for(var col = 0; col < n; col++){
-//             if(isSafe(row, col)){
-//                 board[row][col] = 'Q';
-//                 placeQueen(row + 1);
-//                 board[row][col] = '.';
-//             }
+//         result.push(solution);
+//         return;
+//     }
+//     for(var col = 0; col < board.length; col++){
+//         if(isValid(board, row, col)){
+//             board[row][col] = 'Q';
+//             solveNQueensHelper(board, row + 1, result);
+//             board[row][col] = '.';
 //         }
 //     }
-//     function isSafe(row, col){
+// }
+// function isValid(board, row, col){
 //     for(var i = 0; i < row; i++){
-//         if(board[i][col] === 'Q' || (col - (row - i) >= 0 && board[i][col - (row - i)] === 'Q') || (col + (row - i) < n && board[i][col + (row - i)] === 'Q')){
+//         if(board[i][col] == 'Q'){
+//             return false;
+//         }
+//         if(col - (row - i) >= 0 && board[i][col - (row - i)] == 'Q'){
+//             return false;
+//         }
+//         if(col + (row - i) < board.length && board[i][col + (row - i)] == 'Q'){
 //             return false;
 //         }
 //     }
 //     return true;
 // }
-//     placeQueen(0);
-//     return result;
-// }
 // console.log(solveNQueens(4));
-    
+
+
 
 // -------------------------------------
 // Tower of Hanoi
 // Write a function towerOfHanoi(n, fromRod, toRod, auxRod) that solves the Tower of Hanoi problem for n disks.
+
 // function towerOfHanoi(n, fromRod, toRod, auxRod){
 //     if(n === 1){
 //         console.log(`Move disk 1 from rod ${fromRod} to rod ${toRod}`);
@@ -122,6 +141,7 @@
 // ------------------------------------
 // Merge Sort
 // Write a function mergeSort(arr) that sorts an array using the merge sort algorithm.
+
 // function mergeSort(arr){
 //     if(arr.length <= 1){
 //         return arr;
@@ -131,48 +151,35 @@
 //     var right = arr.slice(mid);
 //     return merge(mergeSort(left), mergeSort(right));
 // }
-// function merge(left, right){
+// function merge(left, right){ 
+//     if(left.length==0)
+//         return right;
+//     if(right.length==0)
+//         return left;
 //     var result = [];
-//     var i = 0, j = 0;
-//     while(i < left.length && j < right.length){
-//         if(left[i] < right[j]){
-//             result.push(left[i]);
-//             i++;
-//         } else {
-//             result.push(right[j]);
-//             j++;
-//         }
+//     if(left[0] < right[0]){
+//         result.push(left.shift());
+//     } 
+//     else{
+//         result.push(right.shift());
 //     }
-//     while(i < left.length){
-//         result.push(left[i]);
-//         i++;
-//     }
-//     while(j < right.length){
-//         result.push(right[j]);
-//         j++;
-//     }
-//     return result;
+//     return result.concat(merge(left,right));
 // }
 // console.log(mergeSort([5, 2, 8, 1, 3]));
     
 // --------------------------------------
 // Quick Sort
 // Write a function quickSort(arr) that sorts an array using the quick sort algorithm.
+
+
 // function quickSort(arr) {
 //     if (arr.length <= 1) {
 //         return arr;
 //     }
 //     var pivot = arr[0];
-//     var left = [];
-//     var right = [];
-//     for (var i = 1; i < arr.length; i++) {
-//         if (arr[i] < pivot) {
-//             left.push(arr[i]);
-//         } else {
-//             right.push(arr[i]);
-//         }
-//     }
-//     return quickSort(left).concat(pivot, quickSort(right));
+//     var left = arr.slice(1).filter(item => item < pivot);
+//     var right = arr.slice(1).filter(item => item >= pivot);
+//     return [...quickSort(left), pivot, ...quickSort(right)];
 // }
 // console.log(quickSort([5, 2, 8, 1, 3]));
 // -------------------------------------
