@@ -91,9 +91,9 @@ console.log(10 / 2);
 // 13. **Print a number to a fixed decimal place**
 console.log(3.14159.toFixed(2));
 // 14. **Print the minimum value from a set of numbers**
-console.log(Math.min(10, 20, 30, 40, 50));
+console.log(Math.min(100, 40, 30, 50, 20));
 // 15. **Print the maximum value from a set of numbers**
-console.log(Math.max(10, 20, 30, 40, 50));
+console.log(Math.max(100, 40, 30, 50, 20));
 // 16. **Print a boolean expression (using AND operator)**
 console.log(true && false);
 // 17. **Print a boolean expression (using OR operator)**
@@ -155,6 +155,7 @@ console.log(Object.keys({a: 1, b: 2, c: 3}));
 console.log(Math.pow(5, 2));
 // 20. **Print a reversed string**
 console.log("hello".split('').reverse().join(''));
+
 // ////////////////////////////////////
 
 // 1. **Print "Good Morning"**
